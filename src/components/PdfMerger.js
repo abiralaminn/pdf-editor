@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { PDFDocument } from "pdf-lib";
+import { downloadPDF } from "../utils/pdfDownload";
 import "./PdfMerger.css";
 
 const PdfMerger = () => {
@@ -68,28 +69,9 @@ const PdfMerger = () => {
 
       const mergedPdfBytes = await mergedPdf.save();
       const blob = new Blob([mergedPdfBytes], { type: "application/pdf" });
-      const url = URL.createObjectURL(blob);
 
-      // Mobile-compatible download
-      const link = document.createElement("a");
-      link.href = url;
-      link.download = "merged-document.pdf";
-      link.style.display = "none";
-      document.body.appendChild(link);
-
-      // Trigger download with proper event for mobile
-      if (navigator.userAgent.match(/iPad|iPhone|Android/i)) {
-        link.click();
-        // For iOS, also try opening in new window as fallback
-        setTimeout(() => {
-          window.open(url, "_blank");
-        }, 100);
-      } else {
-        link.click();
-      }
-
-      document.body.removeChild(link);
-      setTimeout(() => URL.revokeObjectURL(url), 100);
+      // Use mobile-compatible download utility
+      downloadPDF(blob, "merged-document.pdf");
       showNotification("PDFs merged successfully! 🎉", "success");
     } catch (error) {
       console.error("Error merging PDFs:", error);

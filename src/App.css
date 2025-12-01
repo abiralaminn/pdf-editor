@@ -4,6 +4,8 @@
   flex-direction: column;
   align-items: center;
   padding: 2rem 1rem;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 .app-header {
@@ -40,6 +42,9 @@
   cursor: pointer;
   transition: all 0.3s;
   backdrop-filter: blur(10px);
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  user-select: none;
 }
 
 .tab-btn:hover {

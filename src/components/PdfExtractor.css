@@ -35,6 +35,9 @@
   cursor: pointer;
   transition: transform 0.2s, box-shadow 0.2s;
   font-weight: 600;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  user-select: none;
 }
 
 .upload-label:hover {
@@ -80,6 +83,9 @@
   font-weight: 600;
   cursor: pointer;
   transition: transform 0.2s, box-shadow 0.2s;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  user-select: none;
 }
 
 .extract-all-btn:hover:not(:disabled) {
@@ -112,6 +118,9 @@
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  user-select: none;
 }
 
 .page-btn:hover:not(:disabled) {

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { PDFDocument } from "pdf-lib";
+import { downloadPDF } from "../utils/pdfDownload";
 import "./PdfExtractor.css";
 
 const PdfExtractor = () => {
@@ -51,28 +52,9 @@ const PdfExtractor = () => {
 
       const pdfBytes = await newPdf.save();
       const blob = new Blob([pdfBytes], { type: "application/pdf" });
-      const url = URL.createObjectURL(blob);
 
-      // Mobile-compatible download
-      const link = document.createElement("a");
-      link.href = url;
-      link.download = `page-${pageNumber}.pdf`;
-      link.style.display = "none";
-      document.body.appendChild(link);
-
-      // Trigger download with proper event for mobile
-      if (navigator.userAgent.match(/iPad|iPhone|Android/i)) {
-        link.click();
-        // For iOS, also try opening in new window as fallback
-        setTimeout(() => {
-          window.open(url, "_blank");
-        }, 100);
-      } else {
-        link.click();
-      }
-
-      document.body.removeChild(link);
-      setTimeout(() => URL.revokeObjectURL(url), 100);
+      // Use mobile-compatible download utility
+      downloadPDF(blob, `page-${pageNumber}.pdf`);
     } catch (error) {
       console.error("Error extracting page:", error);
       showNotification("Error extracting page. Please try again.", "error");
@@ -97,32 +79,12 @@ const PdfExtractor = () => {
 
         const pdfBytes = await newPdf.save();
         const blob = new Blob([pdfBytes], { type: "application/pdf" });
-        const url = URL.createObjectURL(blob);
 
-        // Mobile-compatible download
-        const link = document.createElement("a");
-        link.href = url;
-        link.download = `page-${i + 1}.pdf`;
-        link.style.display = "none";
-        document.body.appendChild(link);
+        // Use mobile-compatible download utility
+        downloadPDF(blob, `page-${i + 1}.pdf`);
 
-        // Trigger download with proper event for mobile
-        if (navigator.userAgent.match(/iPad|iPhone|Android/i)) {
-          link.click();
-          // For iOS, also try opening in new window as fallback
-          setTimeout(() => {
-            window.open(url, "_blank");
-          }, 100);
-        } else {
-          link.click();
-        }
-
-        document.body.removeChild(link);
-        await new Promise((resolve) => setTimeout(resolve, 300));
-        URL.revokeObjectURL(url);
-
-        // Delay between downloads
-        await new Promise((resolve) => setTimeout(resolve, 500));
+        // Delay between downloads for mobile browsers
+        await new Promise((resolve) => setTimeout(resolve, 800));
       }
 
       showNotification("All pages extracted successfully! 🎉", "success");
