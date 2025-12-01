@@ -70,12 +70,26 @@ const PdfMerger = () => {
       const blob = new Blob([mergedPdfBytes], { type: "application/pdf" });
       const url = URL.createObjectURL(blob);
 
+      // Mobile-compatible download
       const link = document.createElement("a");
       link.href = url;
       link.download = "merged-document.pdf";
-      link.click();
+      link.style.display = "none";
+      document.body.appendChild(link);
 
-      URL.revokeObjectURL(url);
+      // Trigger download with proper event for mobile
+      if (navigator.userAgent.match(/iPad|iPhone|Android/i)) {
+        link.click();
+        // For iOS, also try opening in new window as fallback
+        setTimeout(() => {
+          window.open(url, "_blank");
+        }, 100);
+      } else {
+        link.click();
+      }
+
+      document.body.removeChild(link);
+      setTimeout(() => URL.revokeObjectURL(url), 100);
       showNotification("PDFs merged successfully! 🎉", "success");
     } catch (error) {
       console.error("Error merging PDFs:", error);

@@ -53,12 +53,26 @@ const PdfExtractor = () => {
       const blob = new Blob([pdfBytes], { type: "application/pdf" });
       const url = URL.createObjectURL(blob);
 
+      // Mobile-compatible download
       const link = document.createElement("a");
       link.href = url;
       link.download = `page-${pageNumber}.pdf`;
-      link.click();
+      link.style.display = "none";
+      document.body.appendChild(link);
 
-      URL.revokeObjectURL(url);
+      // Trigger download with proper event for mobile
+      if (navigator.userAgent.match(/iPad|iPhone|Android/i)) {
+        link.click();
+        // For iOS, also try opening in new window as fallback
+        setTimeout(() => {
+          window.open(url, "_blank");
+        }, 100);
+      } else {
+        link.click();
+      }
+
+      document.body.removeChild(link);
+      setTimeout(() => URL.revokeObjectURL(url), 100);
     } catch (error) {
       console.error("Error extracting page:", error);
       showNotification("Error extracting page. Please try again.", "error");
@@ -85,15 +99,30 @@ const PdfExtractor = () => {
         const blob = new Blob([pdfBytes], { type: "application/pdf" });
         const url = URL.createObjectURL(blob);
 
+        // Mobile-compatible download
         const link = document.createElement("a");
         link.href = url;
         link.download = `page-${i + 1}.pdf`;
-        link.click();
+        link.style.display = "none";
+        document.body.appendChild(link);
 
+        // Trigger download with proper event for mobile
+        if (navigator.userAgent.match(/iPad|iPhone|Android/i)) {
+          link.click();
+          // For iOS, also try opening in new window as fallback
+          setTimeout(() => {
+            window.open(url, "_blank");
+          }, 100);
+        } else {
+          link.click();
+        }
+
+        document.body.removeChild(link);
+        await new Promise((resolve) => setTimeout(resolve, 300));
         URL.revokeObjectURL(url);
 
-        // Small delay between downloads
-        await new Promise((resolve) => setTimeout(resolve, 200));
+        // Delay between downloads
+        await new Promise((resolve) => setTimeout(resolve, 500));
       }
 
       showNotification("All pages extracted successfully! 🎉", "success");
