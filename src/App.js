@@ -41,9 +41,6 @@ function App() {
         {activeTab === "remove" && <PdfPageRemover />}
       </main>
 
-      <footer className="app-footer">
-        <p>Built with React & pdf-lib</p>
-      </footer>
     </div>
   );
 }

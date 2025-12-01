@@ -28,7 +28,7 @@
 .upload-label {
   display: inline-block;
   padding: 1rem 2rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
   color: white;
   border-radius: 8px;
   cursor: pointer;
@@ -41,7 +41,7 @@
 
 .upload-label:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
 }
 
 .upload-icon {
@@ -57,7 +57,7 @@
 }
 
 .drag-hint {
-  color: #667eea;
+  color: #10b981;
   font-size: 0.85rem;
   text-align: center;
   margin-bottom: 1rem;
@@ -130,7 +130,7 @@
 .merge-btn {
   width: 100%;
   padding: 1rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
   color: white;
   border: none;
   border-radius: 8px;
@@ -145,7 +145,7 @@
 
 .merge-btn:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
 }
 
 .merge-btn:disabled {
