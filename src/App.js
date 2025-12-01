@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import PdfMerger from "./components/PdfMerger";
 import PdfExtractor from "./components/PdfExtractor";
+import PdfPageRemover from "./components/PdfPageRemover";
 import "./App.css";
 
 function App() {
@@ -10,7 +11,7 @@ function App() {
     <div className="App">
       <header className="app-header">
         <h1>📑 PDF Editor</h1>
-        <p>Merge multiple PDFs or extract individual pages</p>
+        <p>Merge, extract, or remove pages from PDFs</p>
       </header>
 
       <div className="tab-container">
@@ -26,10 +27,18 @@ function App() {
         >
           Extract Pages
         </button>
+        <button
+          className={`tab-btn ${activeTab === "remove" ? "active" : ""}`}
+          onClick={() => setActiveTab("remove")}
+        >
+          Remove Pages
+        </button>
       </div>
 
       <main className="app-content">
-        {activeTab === "merge" ? <PdfMerger /> : <PdfExtractor />}
+        {activeTab === "merge" && <PdfMerger />}
+        {activeTab === "extract" && <PdfExtractor />}
+        {activeTab === "remove" && <PdfPageRemover />}
       </main>
 
       <footer className="app-footer">
