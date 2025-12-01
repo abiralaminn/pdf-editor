@@ -22,7 +22,10 @@ const PdfMerger = () => {
 
   const handleFileSelect = (event) => {
     const files = Array.from(event.target.files);
-    setSelectedFiles(files);
+    // Append new files to existing ones instead of replacing
+    setSelectedFiles((prevFiles) => [...prevFiles, ...files]);
+    // Reset the input value to allow selecting the same file again
+    event.target.value = "";
   };
 
   const handleDragStart = (index) => {
@@ -107,7 +110,7 @@ const PdfMerger = () => {
       <div className="upload-section">
         <label htmlFor="merge-upload" className="upload-label">
           <span className="upload-icon">📁</span>
-          Select PDF Files
+          {selectedFiles.length > 0 ? "Add More PDFs" : "Select PDF Files"}
         </label>
         <input
           id="merge-upload"
