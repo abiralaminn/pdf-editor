@@ -4,6 +4,29 @@ A powerful, mobile-friendly React application for editing PDF files directly in 
 
 ## 🌟 Features
 
+### 🔄 Reorder Pages
+
+- **Upload any PDF** - Select a PDF file to reorder its pages
+- **Visual page list** - See all pages with their current positions
+- **Drag-and-drop reordering** - Easily rearrange pages by dragging them
+- **Arrow button controls** - Use up/down arrows for precise positioning
+- **Reset option** - Quickly restore original page order
+- **Live preview** - See the new page order before saving
+- **One-click save** - Download PDF with pages in new order
+
+### ✏️ Edit Text
+
+- **View PDF text content** - Extract and display all text from your PDF
+- **See existing text** - Review what's written on each page before editing
+- **Find text to replace** - Easily locate specific text you want to change
+- **Jump to page** - Click to navigate directly to the page you want to edit
+- **Add overlay text** - Insert new text to cover or replace existing content
+- **Flexible positioning** - Control X and Y coordinates for precise placement
+- **Adjustable font size** - Choose text size from 8 to 72 pixels
+- **Entry management** - View, edit, and remove text entries
+- **Batch editing** - Add multiple text entries before saving
+- **Smart saving** - All text entries applied in one download
+
 ### 📑 Merge PDFs
 
 - **Add PDFs incrementally** - Select one PDF at a time or multiple files
@@ -72,7 +95,8 @@ The app will open at `http://localhost:3000`
 ## 🛠️ Technologies Used
 
 - **React 18.2.0** - UI framework
-- **pdf-lib** - PDF manipulation library
+- **pdf-lib** - PDF manipulation library for creating and modifying PDFs
+- **pdfjs-dist** - PDF.js library for extracting text content from PDFs
 - **Create React App** - Project setup and build tools
 - **CSS3** - Styling with gradients and animations
 - **HTML5 Drag & Drop API** - File reordering functionality
@@ -98,6 +122,27 @@ npm run deploy
 See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed deployment instructions.
 
 ## 💡 How to Use
+
+### Reordering Pages
+
+1. Click "Select PDF File" and choose a PDF
+2. Drag pages up or down to reorder them, or use arrow buttons
+3. Click "Reset Order" to restore original sequence
+4. Click "Save & Download Reordered PDF" to get your file
+5. The downloaded PDF will have pages in the new order
+
+### Editing Text
+
+1. Click "Select PDF File" and choose a PDF
+2. Click "📖 View PDF Text Content" to see all existing text in the PDF
+3. Review the extracted text to find what you want to change
+4. Click "Edit This Page" next to the page with text you want to modify
+5. Enter your new/replacement text in the text area
+6. Set X position (0-600), Y position (0-800), and font size
+7. Click "Add Text to Page" to add the overlay text
+8. Repeat for additional text on any page
+9. Click "Save & Download PDF" to get your edited file
+10. Tip: The new text will overlay on top of existing text
 
 ### Merging PDFs
 

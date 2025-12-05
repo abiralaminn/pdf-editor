@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import PdfMerger from "./components/PdfMerger";
 import PdfExtractor from "./components/PdfExtractor";
 import PdfPageRemover from "./components/PdfPageRemover";
+import PdfPageReorder from "./components/PdfPageReorder";
+import PdfTextEditor from "./components/PdfTextEditor";
 import "./App.css";
 
 function App() {
@@ -11,7 +13,7 @@ function App() {
     <div className="App">
       <header className="app-header">
         <h1>📑 PDF Editor</h1>
-        <p>Merge, extract, or remove pages from PDFs</p>
+        <p>Merge, extract, remove, reorder, and edit PDFs</p>
       </header>
 
       <div className="tab-container">
@@ -33,14 +35,27 @@ function App() {
         >
           Remove Pages
         </button>
+        <button
+          className={`tab-btn ${activeTab === "reorder" ? "active" : ""}`}
+          onClick={() => setActiveTab("reorder")}
+        >
+          Reorder Pages
+        </button>
+        <button
+          className={`tab-btn ${activeTab === "edit" ? "active" : ""}`}
+          onClick={() => setActiveTab("edit")}
+        >
+          Edit Text
+        </button>
       </div>
 
       <main className="app-content">
         {activeTab === "merge" && <PdfMerger />}
         {activeTab === "extract" && <PdfExtractor />}
         {activeTab === "remove" && <PdfPageRemover />}
+        {activeTab === "reorder" && <PdfPageReorder />}
+        {activeTab === "edit" && <PdfTextEditor />}
       </main>
-
     </div>
   );
 }
