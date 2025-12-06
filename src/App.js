@@ -3,7 +3,6 @@ import PdfMerger from "./components/PdfMerger";
 import PdfExtractor from "./components/PdfExtractor";
 import PdfPageRemover from "./components/PdfPageRemover";
 import PdfPageReorder from "./components/PdfPageReorder";
-import PdfTextEditor from "./components/PdfTextEditor";
 import "./App.css";
 
 function App() {
@@ -13,7 +12,7 @@ function App() {
     <div className="App">
       <header className="app-header">
         <h1>📑 PDF Editor</h1>
-        <p>Merge, extract, remove, reorder, and edit PDFs</p>
+        <p>Merge, extract, remove, and reorder PDF pages</p>
       </header>
 
       <div className="tab-container">
@@ -41,12 +40,6 @@ function App() {
         >
           Reorder Pages
         </button>
-        <button
-          className={`tab-btn ${activeTab === "edit" ? "active" : ""}`}
-          onClick={() => setActiveTab("edit")}
-        >
-          Edit Text
-        </button>
       </div>
 
       <main className="app-content">
@@ -54,7 +47,6 @@ function App() {
         {activeTab === "extract" && <PdfExtractor />}
         {activeTab === "remove" && <PdfPageRemover />}
         {activeTab === "reorder" && <PdfPageReorder />}
-        {activeTab === "edit" && <PdfTextEditor />}
       </main>
     </div>
   );
